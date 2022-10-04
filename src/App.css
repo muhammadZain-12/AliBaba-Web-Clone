@@ -1,0 +1,157 @@
+.navBar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-shadow: none !important;
+     
+}
+
+.container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    height: 100%
+}
+
+.upperNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    color: black;
+    width: 20%;
+    
+}
+
+
+
+.bottomNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+}
+
+.para2:hover{
+    color : #ff6a00;
+    cursor: pointer;
+}
+
+fieldset{
+    border: none !important;
+}
+
+
+
+
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: none !important;
+}
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root:before {
+    border-bottom: none !important;
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+
+}
+
+.btn{
+    background-color: #ff6a00;
+    width: 30%;
+    border:2px solid #ff6a00;
+    border-radius:0px 50px 50px 0px
+}
+
+.search-Btn{
+
+}
+
+.btn-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: white;
+}
+
+.icon-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.icon1-div{
+    display: flex;
+    width: 35%;
+    justify-content: space-around;
+}
+
+
+.link1-div{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.link1-div a{
+    color: black;
+    text-decoration: none;
+    font-weight: 350;
+}
+.icon1{
+    height: 30px !important;
+
+}
+
+.icon2-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5vh;
+    font-size: 12px;
+    font-weight: 350;
+}
+
+.icon3-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5vh;
+    font-size: 12px;
+    font-weight: 350;
+}
+.icon4-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5vh;
+    font-size: 12px;
+    font-weight: 350;
+}
+
+input {
+    margin-left: 8px !important;
+}
+
+.body{
+    margin-top: 130px;
+}
+
+#chip-div{
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+}
+
+
+
+
+
