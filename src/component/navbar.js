@@ -1,21 +1,15 @@
 import { AppBar, Typography,TextField, Box } from '@mui/material';
 import Image from '../Images.png'
-import { height, positions } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
 import Person2Icon from '@mui/icons-material/Person2';
 import ChatIcon from '@mui/icons-material/Chat';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import '../App.css'
-import { useState, useSyncExternalStore } from 'react';
-
 
 
 function Navbar (prop) {
   
-
-
-
 
   return (
     
@@ -30,9 +24,11 @@ function Navbar (prop) {
             
             
             </Typography>
+
             <Typography className="para2"   variant="p">
+  
             Manufacturers
-            
+
             
             </Typography>
             
@@ -49,11 +45,11 @@ function Navbar (prop) {
           placeholder="What are you looking for"
           style={{
           borderRadius:'50px 0px 0px 50px',
-          textAlign:"center"
           }}
+          value = {prop.inputValue}
           onChange = {(e)=>prop.getInput(e.target.value)}
 
-         sx={{width:"100%",border:"2px solid #ff6a00",height:"30px",textAlign:"center"}}
+         sx={{width:"100%",border:"2px solid #ff6a00",height:"30px"}}
           
          >
           

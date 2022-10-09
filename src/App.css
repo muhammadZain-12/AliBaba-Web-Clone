@@ -6,6 +6,11 @@
     box-shadow: none !important;
      
 }
+.CHIPS{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 
 .container {
     display: flex !important;
@@ -151,7 +156,8 @@ input {
     justify-content: space-around;
 }
 
-
-
+.chips{
+    background-color: skyblue;
+}
 
 

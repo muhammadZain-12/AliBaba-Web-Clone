@@ -4,19 +4,18 @@ import './App.css';
 import MediaCard from './component/card';
 import Navbar from './component/navbar';
 import { Box } from '@mui/system';
-import { Grid, List, Typography } from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 import Chip from '@mui/material/Chip';
 import { useEffect, useState } from 'react';
 
-// import { Grid } from '@mui/material';
 
-
-// import { useState } from 'react';
 function App() {
   
   const [list,getList] = useState([])
   const [inputValue,getInputValue] = useState("")
   const [filterChip,setFilterChip] = useState([])
+  const [selectedCategoryArr,setSelectedCategoryArr] = useState([])
+  const [searchItem,setSearchItem] = useState([])
   const [listData, setListData] = useState([
     {
       id: 1,
@@ -292,68 +291,137 @@ listData.forEach((e,i)=>{
 
 let c = [...new Set([...b])]
 
-let filter = []
 
 const filterValue = (val,z) => {
-   
-  filter= listData.filter((e,i)=>{
-      
-    if(e.category==val){
-        return e
-      }
-    })
-    
-    setFilterChip([...filter,...filterChip])
-}  
-console.log(filterChip,"abcde")
+  
+   b = ([...selectedCategoryArr,val])
+  
+  let c = [...new Set([...b])]
+
+   setSelectedCategoryArr(c)
+   getInputValue("")
+   setSearchItem([])
+
+  }
+  const getFilterList = () => {
+  
+  let filteredList = []
+  selectedCategoryArr.forEach((j)=>{
+    filteredList = [...filteredList,...listData.filter((x)=>x.category==j)]
+      })
+          
+  setFilterChip(filteredList)
+}
+
+
+  useEffect(()=>{
+        getFilterList()
+  },[selectedCategoryArr])
+
+
+  
+
+
+const deleteValue = (val,z) =>{
+  
+
+let filteredList = [];
+      selectedCategoryArr.forEach((j,i)=>{
+        filteredList =  [...filteredList,...filterChip.filter((x)=>x.category!==val)]
+        
+      })
+          setFilterChip(filteredList)
+
+    setSelectedCategoryArr(selectedCategoryArr.filter((j)=>{
+          return j !== val
+      })
+    )
+    setSearchItem([])
+    }
+
 
 let Chips = c.map((e,i)=>{
   return <Chip
+  key = {i}
   label = {e}
-  id = {i}
-  onClick = {()=>filterValue(e,i)}
+  id = {i} 
+  onClick =  {()=>filterValue(e,i)}  
+  onDelete = {()=>deleteValue(e,i)}
   />
 })
 
+
+
 const getInput = (e) => {
   getInputValue(e)
+  if(!filterChip.length){
   let filterList = listData.filter((x)=>
   x.title.toLowerCase().includes(e.toLowerCase())
   )
+  console.log(filterChip,'filterChip')
   getList([...filterList])
+  
+}
+
+ else if(filterChip.length){
+  
+  let filterList = []
+  selectedCategoryArr.forEach((j,i)=>{
+   
+  filterList = [...filterList,...listData.filter((x)=>
+      x.category==j&&x.title.toLowerCase().includes(e.toLowerCase()))]
+  })
+  
+  setSearchItem(filterList)
+  
+}
 }
 
 let lists = list.length?list:listData
-
-
+if(!inputValue&&searchItem.length){
+  setSearchItem([])
+}
 
 return (
          <div className='containers'>
    
           <div className='Navbar'>
-            <Navbar getInput = {getInput} data = {listData}/>
+            <Navbar inputValue = {inputValue} getInput = {getInput} />
             </div>
             <div className='body'>
+              <div className='CHIPS'>
+              <div >{selectedCategoryArr.map((e)=>{
+                return <Chip label={e}
+                        variant="standard"
+                        sx={{backgroundColor:"skyBlue"}}
+                ></Chip>
+              })}</div>
               <div id='chip-div'>
               {Chips}
               </div>
-
+              </div>
 
               
               <Box>
               <Grid container >
                 
-              {filterChip.length?filterChip.map((e,i)=>{
-                return <Grid item md={3} sm={6} xs={12}>
-                <Box className="cards"> 
-                <MediaCard img={e.image} title = {e.title} price = {e.price} />
+              {searchItem.length?searchItem.map((e,i)=>{
+                return <Grid key={i} item md={3} sm={6} xs={12}>
+                <Box key={i} className="cards"> 
+                <MediaCard key={i} img={e.image} title = {e.title} price = {e.price} />
+                </Box>
+               </Grid>
+              }):filterChip.length?filterChip.map((e,i)=>{
+                return <Grid key={i} item md={3} sm={6} xs={12}>
+                <Box key={i} className="cards"> 
+                <MediaCard key={i} img={e.image} title = {e.title} price = {e.price} />
                 </Box>
                </Grid>
               }):
               lists.map((e,i)=>{
-                 return <Grid item md={3} sm={6} xs={12}>
-                 <Box className="cards"> 
-                 <MediaCard img={e.image} title = {e.title} price = {e.price} />
+                 return <Grid key={i} item md={3} sm={6} xs={12}>
+                 <Box key={i} className="cards"> 
+                 <MediaCard key={i} img={e.image} title = {e.title} price = {e.price} />
                  </Box>
                 </Grid>
               })}
@@ -365,6 +433,6 @@ return (
   </div>       
          
   );
-}
 
+            }
 export default App;
